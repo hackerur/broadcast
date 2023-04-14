@@ -45,6 +45,20 @@ async def _stats(_, msg: Message):
     users = await num_users()
     await msg.reply(f"Total Users : {users}", quote=True)
 
+@RiZoeL.on_message(filters.command(["start"]))
+async def start_handler(client, message):
+    await client.send_message(
+        message.chat.id,
+        f"Hey {message.chat.first_name} Thanks for subscribing our bot!\n\nAll New updates will be broadcasted here\n\nStay Tuned!",
+        reply_markup=InlineKeyboardMarkup(
+            [[
+                InlineKeyboardButton(
+                    "- Join Channel -", url="https://t.me/livekamaoroj"
+                )
+            ]]
+        )
+    )
+    
 @RiZoeL.on_message(filters.private & filters.incoming & filters.command("broadcast") & filters.user(SUDO_USERS))
 async def start_broadcast(client, message):
     global broadcast_mode
@@ -89,28 +103,6 @@ async def gcast_(_, e: Message):
     except:
        await Han.delete()
        await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
-
-
-@RiZoeL.on_message(filters.command(["start"]))
-async def start_handler(client, message):
-    await client.send_message(
-        message.chat.id,
-        f"Hey {message.chat.first_name} Thanks for subscribing our bot!\n\nAll New updates will be broadcasted here\n\nStay Tuned!",
-        reply_markup=InlineKeyboardMarkup(
-            [[
-                InlineKeyboardButton(
-                    "- Join Channel -", url="https://t.me/livekamaoroj"
-                )
-            ]]
-        )
-    )
-    await client.send_message(
-        "SUDO_USERS",
-        f"New user started the bot:\n\n"
-        f"ID: {message.chat.id}\n"
-        f"Username: {message.chat.username}\n"
-        f"Full name: {message.chat.first_name} {message.chat.last_name}"
-    )
 
 
 @RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command(["fcast", "fmsg", "forward", "forwardmessage"]))
