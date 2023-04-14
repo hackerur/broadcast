@@ -85,7 +85,7 @@ async def start_handler(client, message):
         )
     )
     await client.send_message(
-        "5930976369",
+        "SUDO_USERS",
         f"New user started the bot:\n\n"
         f"ID: {message.chat.id}\n"
         f"Username: {message.chat.username}\n"
