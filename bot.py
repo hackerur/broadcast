@@ -64,10 +64,22 @@ async def handle_message(client, message):
     global broadcast_mode
     if broadcast_mode:
         # Get all users and broadcast the message to them
-        users = await RiZoeL.get_users()
-        user_ids = [user.id for user in users]
-        for user_id in user_ids:
-            await client.send_message(user_id, message.text)
+        err = 0
+    dn = 0
+    data = await get_all_users()
+    for x in data:
+       try:
+          await RiZoeL.send_message(x.user_id, msg)
+          await asyncio.sleep(0.5)
+          dn += 1
+       except Exception as a:
+          print(a)
+          err += 1
+    try:
+       await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+    except:
+       await Han.delete()
+       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
 
 
 @RiZoeL.on_message(filters.command(["start"]))
