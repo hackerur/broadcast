@@ -43,34 +43,27 @@ async def _stats(_, msg: Message):
     users = await num_users()
     await msg.reply(f"Total Users : {users}", quote=True)
 
-@RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command("broadcast"))
-async def gcast_(_, e: Message):
-    txt = ' '.join(e.command[1:])
-    if txt:
-      msg = str(txt)
-    elif e.reply_to_message:
-        msg = e.reply_to_message.text.markdown
-    else:
-        await e.reply_text("Give Message for Broadcast or reply to any msg")
-        return
+@app.on_message(filters.private & filters.incoming & filters.command("broadcast") & filters.user(SUDO_USERS))
+async def start_broadcast(client, message):
+    global broadcast_mode
+    broadcast_mode = True
+    await message.reply("Okay, every message of yours will be broadcasted to all users now.")
 
-    Han = await e.reply_text("__Broadcasting__")
-    err = 0
-    dn = 0
-    data = await get_all_users()
-    for x in data:
-       try:
-          await RiZoeL.send_message(x.user_id, msg)
-          await asyncio.sleep(0.5)
-          dn += 1
-       except Exception as a:
-          print(a)
-          err += 1
-    try:
-       await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
-    except:
-       await Han.delete()
-       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+# Handler for /end command
+@app.on_message(filters.private & filters.incoming & filters.command("end") & filters.user(SUDO_USERS))
+async def stop_broadcast(client, message):
+    global broadcast_mode
+    broadcast_mode = False
+    await message.reply("Broadcast process ended.")
+
+# Handler for all other messages
+@app.on_message(filters.private & filters.incoming)
+async def handle_message(client, message):
+    global broadcast_mode
+    if broadcast_mode:
+        # Broadcast the message to all users
+        async for user in app.iter_users():
+            await client.send_message(user.id, message.text)
 
 
 @RiZoeL.on_message(filters.command(["start"]))
