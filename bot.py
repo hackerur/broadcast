@@ -60,19 +60,19 @@ async def stop_broadcast(client, message):
 
 # Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming)
-async def gcast_(_, e: Message):
+async def handle_message(client, message):
     global broadcast_mode
     if broadcast_mode:
-     txt = Message.text
+     txt = message.text
     if txt:
       msg = str(txt)
-    elif e.reply_to_message:
-        msg = e.reply_to_message.text.markdown
+    elif client.reply_to_message:
+        msg = client.reply_to_message.text.markdown
     else:
-        await e.reply_text("Give Message for Broadcast or reply to any msg")
+        await client.reply_text("Give Message for Broadcast or reply to any msg")
         return
 
-    Han = await e.reply_text("__Broadcasting__")
+    Han = await client.reply_text("__Broadcasting__")
     err = 0
     dn = 0
     data = await get_all_users()
