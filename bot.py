@@ -60,25 +60,25 @@ async def stop_broadcast(client, message):
 
 # Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming)
-async def handle_message(client, message):
+async def gcast_(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
-     txt = message.text
+     txt = e.text
     if txt:
       msg = str(txt)
-    elif RiZoeL.reply_to_message:
-        msg = RiZoeL.reply_to_message.text.markdown
+    elif e.reply_to_message:
+        msg = e.reply_to_message.text.markdown
     else:
-        await RiZoeL.reply_text("Give Message for Broadcast or reply to any msg")
+        await e.reply_text("Give Message for Broadcast or reply to any msg")
         return
 
-    Han = await RiZoeL.reply_text("__Broadcasting__")
+    Han = await e.reply_text("__Broadcasting__")
     err = 0
     dn = 0
     data = await get_all_users()
     for x in data:
        try:
-          await RiZoeL.send_message(x.user_id, msg)
+          await e.send_message(x.user_id, msg)
           await asyncio.sleep(0.5)
           dn += 1
        except Exception as a:
@@ -88,7 +88,7 @@ async def handle_message(client, message):
        await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
     except:
        await Han.delete()
-       await RiZoeL.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
 
 
 @RiZoeL.on_message(filters.command(["start"]))
