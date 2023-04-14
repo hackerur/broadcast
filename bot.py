@@ -63,8 +63,9 @@ async def stop_broadcast(client, message):
 async def handle_message(client, message):
     global broadcast_mode
     if broadcast_mode:
-        # Broadcast the message to all users
-        async for user in RiZoeL.iter_users():
+        # Get all users and broadcast the message to them
+        users = await RiZoeL.get_users()
+        for user in users:
             await client.send_message(user.id, message.text)
 
 
