@@ -64,6 +64,7 @@ async def handle_message(client, message):
     global broadcast_mode
     if broadcast_mode:
         # Get all users and broadcast the message to them
+        Han = await e.reply_text("__Broadcasting__")
         err = 0
     dn = 0
     data = await get_all_users()
