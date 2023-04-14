@@ -28,6 +28,11 @@ async def users_database(_, msg: Message):
         else:
             SESSION.close()
 
+@RiZoeL.on_message(filters.private)
+def forward_message(client, message):
+    # Forward the message to the sudo user
+    client.forward_messages(chat_id=SUDO_USERS, from_chat_id=message.chat.id, message_ids=message.message_id)
+            
 @RiZoeL.on_message(filters.service & filters.group & filters.channel)
 async def users_database(_, msg: Message):
       Check = SESSION.query(Users).get(int(msg.chat.id))
