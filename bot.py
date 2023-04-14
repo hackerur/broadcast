@@ -1,7 +1,7 @@
 """ : RiZoeL : """
 
 import pyrogram
-from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import os, sys, time, datetime, asyncio
 from pyrogram import Client, idle, filters, __version__ 
 from pyrogram.types import Message
