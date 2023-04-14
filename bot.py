@@ -76,10 +76,10 @@ async def start_handler(client, message):
     await client.send_message(
         message.chat.id,
         f"Hey {message.chat.first_name} Thanks for subscribing our bot!\n\nAll New updates will be broadcasted here\n\nStay Tuned!",
-        reply_markup=pyrogram.InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup(
             [[
-                pyrogram.InlineKeyboardButton(
-                    "Join Channel", url="https://t.me/livekamaoroj"
+                InlineKeyboardButton(
+                    "- Join Channel -", url="https://t.me/livekamaoroj"
                 )
             ]]
         )
