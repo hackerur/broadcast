@@ -73,7 +73,7 @@ async def stop_broadcast(client, message):
     await message.reply("Broadcast process ended.")
 
 # Handler for all other messages
-@RiZoeL.on_message(filters.private & filters.incoming)
+@RiZoeL.on_message(filters.private & filters.incoming & filters.user(SUDO_USERS))
 async def gcast_(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
