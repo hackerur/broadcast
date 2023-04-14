@@ -26,7 +26,7 @@ async def users_database(_, msg: Message):
         else:
             SESSION.close()
 
-@RiZoeL.on_message(filters.service & filters.group & filtes.channel)
+@RiZoeL.on_message(filters.service & filters.group & filters.channel)
 async def users_database(_, msg: Message):
       Check = SESSION.query(Users).get(int(msg.chat.id))
       if not Check:
