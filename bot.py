@@ -60,7 +60,7 @@ async def stop_broadcast(client, message):
 
 # Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming)
-async def handle_message(client, message):
+async def gcast_(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
      txt = ' '.join(e.command[1:])
