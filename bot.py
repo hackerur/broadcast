@@ -64,7 +64,7 @@ async def handle_message(client, message):
     global broadcast_mode
     if broadcast_mode:
         # Broadcast the message to all users
-        async for user in app.iter_users():
+        async for user in RiZoeL.iter_users():
             await client.send_message(user.id, message.text)
 
 
