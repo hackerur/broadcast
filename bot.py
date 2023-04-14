@@ -60,7 +60,7 @@ async def stop_broadcast(client, message):
 
 # Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming)
-async def handle_message(client, message):
+async def handle_message(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
         # Get all users and broadcast the message to them
