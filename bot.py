@@ -43,21 +43,21 @@ async def _stats(_, msg: Message):
     users = await num_users()
     await msg.reply(f"Total Users : {users}", quote=True)
 
-@app.on_message(filters.private & filters.incoming & filters.command("broadcast") & filters.user(SUDO_USERS))
+@RiZoeL.on_message(filters.private & filters.incoming & filters.command("broadcast") & filters.user(SUDO_USERS))
 async def start_broadcast(client, message):
     global broadcast_mode
     broadcast_mode = True
     await message.reply("Okay, every message of yours will be broadcasted to all users now.")
 
 # Handler for /end command
-@app.on_message(filters.private & filters.incoming & filters.command("end") & filters.user(SUDO_USERS))
+@RiZoeL.on_message(filters.private & filters.incoming & filters.command("end") & filters.user(SUDO_USERS))
 async def stop_broadcast(client, message):
     global broadcast_mode
     broadcast_mode = False
     await message.reply("Broadcast process ended.")
 
 # Handler for all other messages
-@app.on_message(filters.private & filters.incoming)
+@RiZoeL.on_message(filters.private & filters.incoming)
 async def handle_message(client, message):
     global broadcast_mode
     if broadcast_mode:
