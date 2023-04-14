@@ -63,7 +63,7 @@ async def stop_broadcast(client, message):
 async def gcast_(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
-     txt = ' '.join(e.command[1:])
+     txt = Message.text
     if txt:
       msg = str(txt)
     elif e.reply_to_message:
