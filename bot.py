@@ -10,6 +10,8 @@ from database.users_db import *
 from database import SESSION 
 from vars import *
 
+broadcast_mode = False
+
 RiZoeL = Client(
     "RiZoeL-Bot",
     api_id=API_ID,
