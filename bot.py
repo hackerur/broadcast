@@ -71,7 +71,7 @@ async def gcast_(_, e: Message):
        await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
 
 
-@RiZoeL.on_message(pyrogram.filters.command(["start"]))
+@RiZoeL.on_message(filters.command(["start"]))
 async def start_handler(client, message):
     await client.send_message(
         message.chat.id,
