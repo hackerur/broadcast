@@ -52,7 +52,7 @@ async def start_command(client, message):
     keyboard = InlineKeyboardMarkup(
         [[InlineKeyboardButton("- Join Channel -", url="https://t.me/livekamaoroj")]]
     )
-    await RiZoeL.send_photo(chat_id=message.chat.id, video=video_file_id, caption=caption, reply_markup=keyboard)
+    await RiZoeL.send_photo(chat_id=message.chat.id, photo=video_file_id, caption=caption, reply_markup=keyboard)
 
 @RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command("gcast"))
 async def gcast_(_, e: Message):
