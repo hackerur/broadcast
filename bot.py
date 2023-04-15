@@ -46,19 +46,43 @@ async def _stats(_, msg: Message):
     await msg.reply(f"Total Users : {users}", quote=True)
 
 @RiZoeL.on_message(filters.command(["start"]))
-async def start_handler(client, message):
-    await client.send_message(
-        message.chat.id,
-        f"Hey {message.chat.first_name} Thanks for subscribing our bot!\n\nAll New updates will be broadcasted here\n\nStay Tuned!",
-        reply_markup=InlineKeyboardMarkup(
-            [[
-                InlineKeyboardButton(
-                    "- Join Channel -", url="https://t.me/livekamaoroj"
-                )
-            ]]
-        )
+async def start_command(client, message):
+    video_file_id = "https://graph.org/file/8048e7f238b98bcf008c7.jpg"
+    caption = f"Hey {message.chat.first_name} Thanks for subscribing our bot!\n\nAll New updates will be broadcasted here\n\nStay Tuned!"
+    keyboard = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("- Join Channel -", url="https://t.me/livekamaoroj")]]
     )
-    
+    await app.send_photo(chat_id=message.chat.id, video=video_file_id, caption=caption, reply_markup=keyboard)
+
+@RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command("gcast"))
+async def gcast_(_, e: Message):
+    txt = ' '.join(e.command[1:])
+    if txt:
+      msg = str(txt)
+    elif e.reply_to_message:
+        msg = e.reply_to_message.text.markdown
+    else:
+        await e.reply_text("Give Message for Broadcast or reply to any msg")
+        return
+
+    Han = await e.reply_text("__Processing...__")
+    err = 0
+    dn = 0
+    data = await get_all_users()
+    for x in data:
+       try:
+          await RiZoeL.send_message(x.user_id, msg)
+          await asyncio.sleep(0.5)
+          dn += 1
+       except Exception as a:
+          print(a)
+          err += 1
+    try:
+       await Han.edit_text(f"Gcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+    except:
+       await Han.delete()
+       await e.reply_text(f"Gcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+
 @RiZoeL.on_message(filters.private & filters.incoming & filters.command("broadcast") & filters.user(SUDO_USERS))
 async def start_broadcast(client, message):
     global broadcast_mode
