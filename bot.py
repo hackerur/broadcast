@@ -96,37 +96,54 @@ async def stop_broadcast(client, message):
     broadcast_mode = False
     await message.reply("Broadcast process ended.")
 
-# Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming & filters.user(SUDO_USERS))
 async def gcast_(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
-     txt = e.text
-    if txt:
-      msg = str(txt)
-    elif e.reply_to_message:
-        msg = e.reply_to_message.text.markdown
+        text = e.text
     else:
-        await e.reply_text("Give Message for Broadcast or reply to any msg")
+        await e.reply_text("broadcast is not enabled")
         return
 
     Han = await e.reply_text("__Broadcasting__")
-    err = 0
-    dn = 0
+    error_count = 0
+    done_count = 0
     data = await get_all_users()
-    for x in data:
-       try:
-          await RiZoeL.send_message(x.user_id, msg)
-          await asyncio.sleep(0.5)
-          dn += 1
-       except Exception as a:
-          print(a)
-          err += 1
+    for user in data:
+        try:
+            message_media = None
+            if e.photo:
+                message_media = e.photo.file_id
+            elif e.video:
+                message_media = e.video.file_id
+            elif e.animation:
+                message_media = e.animation.file_id
+            elif e.document:
+                message_media = e.document.file_id
+            elif e.audio:
+                message_media = e.audio.file_id
+                
+            caption = None
+            if e.caption:
+                caption = e.caption
+            elif e.video_note:
+                caption = e.video_note.caption
+            elif e.voice:
+                caption = e.voice.caption
+
+            await RiZoeL.send_chat_action(user.user_id, "typing")
+            await asyncio.sleep(1)
+            await RiZoeL.send_message(user.user_id, message_text, reply_markup=None, disable_web_page_preview=True, reply_to_message_id=None, media=message_media, caption=caption, parse_mode="markdown")
+            done_count += 1
+        except Exception as e:
+            print(e)
+            error_count += 1
     try:
-       await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+        await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {done_count} \n Failed chats: {error_count}")
     except:
-       await Han.delete()
-       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+        await Han.delete()
+        await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {done_count} \n Failed chats: {error_count}")
+
 
 
 @RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command(["fcast", "fmsg", "forward", "forwardmessage"]))
