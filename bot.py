@@ -109,15 +109,15 @@ async def gcast_(_, e: Message):
     if txt:
       msg = str(txt)
     elif photo:
-       msg = str(photo)
+       msg = photo
     elif video:
-       msg = str(video)
+       msg = video
     elif ani:
-       msg = str(ani)
+       msg = ani
     elif doc:
-       msg = str(doc)
+       msg = doc
     elif aud:
-       msg = str(aud)
+       msg = aud
     else:
         await e.reply_text("Give Message for Broadcast or reply to any msg")
         return
