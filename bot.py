@@ -106,40 +106,41 @@ async def gcast_(_, e: Message):
      ani = e.animation
      doc = e.document
      aud = e.audio
-    if txt:
-      msg = str(txt)
-    elif photo:
-       msg = photo
-    elif video:
-       msg = video
-    elif ani:
-       msg = ani
-    elif doc:
-       msg = doc
-    elif aud:
-       msg = aud
+    elif e.reply_to_message:
+        msg = e.reply_to_message.text.markdown
     else:
         await e.reply_text("Give Message for Broadcast or reply to any msg")
         return
 
     Han = await e.reply_text("__Broadcasting__")
-    err = 0
-    dn = 0
     data = await get_all_users()
     for x in data:
        try:
-          await RiZoeL.send_message(x.user_id, msg)
-          await asyncio.sleep(0.5)
-          dn += 1
+          if txt:
+            await RiZoeL.send_message(x.user_id, msg)
+            await asyncio.sleep(0.5)
+          elif photo:
+             await RiZoeL.send_photo(x.user_id, photo)
+             await asyncio.sleep(0.5)
+          elif video:
+             await RiZoeL.send_video(x.user_id, video)
+             await asyncio.sleep(0.5)
+          elif ani:
+             await RiZoeL.send_animation(x.user_id, ani)
+             await asyncio.sleep(0.5)
+          elif doc:
+             await RiZoeL.send_document(x.user_id, doc)
+             await asyncio.sleep(0.5)
+          elif aud:
+             await RiZoeL.send_audio(x.user_id, aud)
+             await asyncio.sleep(0.5)
        except Exception as a:
           print(a)
-          err += 1
     try:
-       await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await Han.edit_text(f"Broadcast Done ✓")
     except:
        await Han.delete()
-       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
-
+       await e.reply_text(f"Broadcast Done ✓")
 
 
 @RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command(["fcast", "fmsg", "forward", "forwardmessage"]))
