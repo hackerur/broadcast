@@ -108,18 +108,16 @@ async def gcast_(_, e: Message):
      aud = e.audio
     if txt:
       msg = str(txt)
-    if photo:
+    elif photo:
        msg = str(photo)
-    if video:
+    elif video:
        msg = str(video)
-    if ani:
+    elif ani:
        msg = str(ani)
-    if doc:
+    elif doc:
        msg = str(doc)
-    if aud:
+    elif aud:
        msg = str(aud)
-    elif e.reply_to_message:
-        msg = e.reply_to_message.text.markdown
     else:
         await e.reply_text("Give Message for Broadcast or reply to any msg")
         return
