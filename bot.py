@@ -96,16 +96,14 @@ async def stop_broadcast(client, message):
     broadcast_mode = False
     await message.reply("Broadcast process ended.")
 
+# Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming & filters.user(SUDO_USERS))
 async def gcast_(_, e: Message):
     global broadcast_mode
     if broadcast_mode:
      txt = e.text
-     photo = e.photo
-     video = e.video
-     ani = e.animation
-     doc = e.document
-     aud = e.audio
+    if txt:
+      msg = str(txt)
     elif e.reply_to_message:
         msg = e.reply_to_message.text.markdown
     else:
@@ -113,34 +111,22 @@ async def gcast_(_, e: Message):
         return
 
     Han = await e.reply_text("__Broadcasting__")
+    err = 0
+    dn = 0
     data = await get_all_users()
     for x in data:
        try:
-          if txt:
-            await RiZoeL.send_message(x.user_id, msg)
-            await asyncio.sleep(0.5)
-          elif photo:
-             await RiZoeL.send_photo(x.user_id, photo)
-             await asyncio.sleep(0.5)
-          elif video:
-             await RiZoeL.send_video(x.user_id, video)
-             await asyncio.sleep(0.5)
-          elif ani:
-             await RiZoeL.send_animation(x.user_id, ani)
-             await asyncio.sleep(0.5)
-          elif doc:
-             await RiZoeL.send_document(x.user_id, doc)
-             await asyncio.sleep(0.5)
-          elif aud:
-             await RiZoeL.send_audio(x.user_id, aud)
-             await asyncio.sleep(0.5)
+          await RiZoeL.send_message(x.user_id, msg)
+          await asyncio.sleep(0.5)
+          dn += 1
        except Exception as a:
           print(a)
+          err += 1
     try:
-       await Han.edit_text(f"Broadcast Done ✓")
+       await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
     except:
        await Han.delete()
-       await e.reply_text(f"Broadcast Done ✓")
+       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
 
 
 @RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command(["fcast", "fmsg", "forward", "forwardmessage"]))
