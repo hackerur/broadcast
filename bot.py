@@ -87,14 +87,14 @@ async def gcast_(_, e: Message):
 async def start_broadcast(client, message):
     global broadcast_mode
     broadcast_mode = True
-    await message.reply("Okay, every message of yours will be broadcasted to all users now.")
+    await message.reply("ᴏᴋᴀʏ, ᴇᴠᴇʀʏ ᴍᴇꜱꜱᴀɢᴇ ᴏꜰ ʏᴏᴜʀꜱ ᴡɪʟʟ ʙᴇ ʙʀᴏᴀᴅᴄᴀꜱᴛᴇᴅ ᴛᴏ ᴀʟʟ ᴜꜱᴇʀꜱ ɴᴏᴡ.")
 
 # Handler for /end command
 @RiZoeL.on_message(filters.private & filters.incoming & filters.command("end") & filters.user(SUDO_USERS))
 async def stop_broadcast(client, message):
     global broadcast_mode
     broadcast_mode = False
-    await message.reply("Broadcast process ended.")
+    await message.reply("ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀᴏᴄᴇss ᴇɴᴅᴇᴅ.")
 
 # Handler for all other messages
 @RiZoeL.on_message(filters.private & filters.incoming & filters.user(SUDO_USERS))
@@ -136,7 +136,7 @@ async def forward_(_, e: Message):
        from_chat = str(Siu[0])
        Msg_id = int(Siu[1])      
     else:
-       await e.reply_text("Wrong Usage! \n\n Syntax: /forward (from chat id) (message id) \n\nNote: Must add bot in from message Channel!")
+       await e.reply_text("ᴡʀᴏɴɢ ᴜsᴇᴀɢᴇ! \n\n sʏɴᴛᴀx: /forward (from chat id) (message id) \n\nɴᴏᴛᴇ: ᴍᴜsᴛ ᴀᴅᴅ ʙᴏᴛ ɪɴ ғʀᴏᴍ ᴍᴇssᴇɢᴇ ᴄʜᴀɴɴᴇʟ!")
        return
 
     Han = await e.reply_text("__ғᴏʀᴡᴀʀᴅɪɴɢ__")
