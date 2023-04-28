@@ -78,10 +78,10 @@ async def gcast_(_, e: Message):
           print(a)
           err += 1
     try:
-       await Han.edit_text(f"Gcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await Han.edit_text(f"ɢᴄᴀꜱᴛ ᴅᴏɴᴇ ✓ \n\n ꜱᴜᴄᴄᴇꜱꜱ ᴄʜᴀᴛꜱ: {dn} \n ꜰᴀɪʟᴇᴅ ᴄʜᴀᴛꜱ: {err}")
     except:
        await Han.delete()
-       await e.reply_text(f"Gcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await e.reply_text(f"ɢᴄᴀꜱᴛ ᴅᴏɴᴇ ✓ \n\n ꜱᴜᴄᴄᴇꜱꜱ ᴄʜᴀᴛꜱ: {dn} \n ꜰᴀɪʟᴇᴅ ᴄʜᴀᴛꜱ: {err}")
 
 @RiZoeL.on_message(filters.private & filters.incoming & filters.command("broadcast") & filters.user(SUDO_USERS))
 async def start_broadcast(client, message):
@@ -107,7 +107,7 @@ async def gcast_(_, e: Message):
     elif e.reply_to_message:
         msg = e.reply_to_message.text.markdown
     else:
-        await e.reply_text("Give Message for Broadcast or reply to any msg")
+        await e.reply_text("ɢɪᴠᴇ ᴍᴇꜱꜱᴀɢᴇ ꜰᴏʀ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍꜱɢ")
         return
 
     Han = await e.reply_text("__Broadcasting__")
