@@ -48,7 +48,7 @@ async def _stats(_, msg: Message):
 @RiZoeL.on_message(filters.command(["start"]))
 async def start_command(client, message):
     video_file_id = "https://graph.org/file/eb3fcee6b5238a027957c.jpg"
-    caption = f"ʜᴇʏ {message.chat.first_name} ᴛʜᴀɴᴋs ғᴏʀ sᴛᴀʀᴛɪɴɢ ʙᴏᴛ!\n\nᴀʟʟ ɴᴇᴡ ᴜᴘᴅᴀᴛᴇs ᴡɪʟʟ ʙᴇ sʜᴀʀᴇᴅ ᴛʜᴇʀᴇ\n\nsᴛᴀʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴡɪᴛʜ ᴏᴜʀ ɴᴇᴛᴡᴏʀᴋ - [ɴᴏᴏʙᴄʀᴇᴀᴛᴏʀ](t.me/noobcreator)!"
+    caption = f"ʜᴇʏ {message.chat.first_name} ᴛʜᴀɴᴋs ғᴏʀ sᴛᴀʀᴛɪɴɢ ʙᴏᴛ!\n\nᴀʟʟ ɴᴇᴡ ᴜᴘᴅᴀᴛᴇs ᴡɪʟʟ ʙᴇ sʜᴀʀᴇᴅ ᴛʜᴇʀᴇ\n\nsᴛᴀʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴡɪᴛʜ ᴏᴜʀ ɴᴇᴛᴡᴏʀᴋ - [ɴᴏᴏʙᴄʀᴇᴀᴛᴏʀ](t.me/noobcreator)! \n\nғᴀᴄɪɴɢ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴄᴏɴᴛᴀᴄᴛ - [ᴘɪʀᴏᴋɪᴅ](t.me/pirokid) \n\nᴏᴡɴᴇʀ ᴏғ ᴛʜɪs ᴄᴏᴅᴇ ɪs - [ᴠɪᴠᴇᴋᴇᴠɪʟ](t.me/vivekevil)"
     keyboard = InlineKeyboardMarkup(
         [[InlineKeyboardButton("⁂ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ⁂", url="https://t.me/NOOBXCREATOR")]]
     )
