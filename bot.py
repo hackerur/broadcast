@@ -47,10 +47,10 @@ async def _stats(_, msg: Message):
 
 @RiZoeL.on_message(filters.command(["start"]))
 async def start_command(client, message):
-    video_file_id = "https://graph.org/file/8048e7f238b98bcf008c7.jpg"
-    caption = f"Hey {message.chat.first_name} Thanks for subscribing our bot!\n\nAll New updates will be broadcasted here\n\nStay Tuned!"
+    video_file_id = "https://graph.org/file/eb3fcee6b5238a027957c.jpg"
+    caption = f"ʜᴇʏ {message.chat.first_name} ᴛʜᴀɴᴋs ғᴏʀ sᴛᴀʀᴛɪɴɢ ʙᴏᴛ!\n\nᴀʟʟ ɴᴇᴡ ᴜᴘᴅᴀᴛᴇs ᴡɪʟʟ ʙᴇ sʜᴀʀᴇᴅ ᴛʜᴇʀᴇ\n\nsᴛᴀʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴡɪᴛʜ ᴏᴜʀ ɴᴇᴛᴡᴏʀᴋ - [ɴᴏᴏʙᴄʀᴇᴀᴛᴏʀ](t.me/noobcreator)!"
     keyboard = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("- Join Channel -", url="https://t.me/livekamaoroj")]]
+        [[InlineKeyboardButton("⁂ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ⁂", url="https://t.me/NOOBXCREATOR")]]
     )
     await RiZoeL.send_photo(chat_id=message.chat.id, photo=video_file_id, caption=caption, reply_markup=keyboard)
 
@@ -62,7 +62,7 @@ async def gcast_(_, e: Message):
     elif e.reply_to_message:
         msg = e.reply_to_message.text.markdown
     else:
-        await e.reply_text("Give Message for Broadcast or reply to any msg")
+        await e.reply_text("ɢɪᴠᴇ ᴍᴇ ᴍᴇssᴇɢᴇ ғᴏʀ ʙʀᴏᴀᴅᴄᴀsᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇssᴇɢᴇ")
         return
 
     Han = await e.reply_text("__Processing...__")
