@@ -11,7 +11,7 @@
 > The easy way to host this bot, deploy to Heroku 
 <br>
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MrRizoel/Broadcast-bot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hackerur/broadcast)
 
 <b> Local hosting! </b>
 
