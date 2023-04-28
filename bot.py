@@ -65,7 +65,7 @@ async def gcast_(_, e: Message):
         await e.reply_text("ɢɪᴠᴇ ᴍᴇ ᴍᴇssᴇɢᴇ ғᴏʀ ʙʀᴏᴀᴅᴄᴀsᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇssᴇɢᴇ")
         return
 
-    Han = await e.reply_text("__Processing...__")
+    Han = await e.reply_text("__ᴘʀᴏᴄᴇssɪɴɢ...__")
     err = 0
     dn = 0
     data = await get_all_users()
@@ -110,7 +110,7 @@ async def gcast_(_, e: Message):
         await e.reply_text("ɢɪᴠᴇ ᴍᴇꜱꜱᴀɢᴇ ꜰᴏʀ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍꜱɢ")
         return
 
-    Han = await e.reply_text("__Broadcasting__")
+    Han = await e.reply_text("__ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ__")
     err = 0
     dn = 0
     data = await get_all_users()
@@ -123,10 +123,10 @@ async def gcast_(_, e: Message):
           print(a)
           err += 1
     try:
-       await Han.edit_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await Han.edit_text(f"ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴅᴏɴᴇ ✓ \n\n ꜱᴜᴄᴄᴇꜱꜱ ᴄʜᴀᴛꜱ: {dn} \n ꜰᴀɪʟᴇᴅ ᴄʜᴀᴛꜱ: {err}")
     except:
        await Han.delete()
-       await e.reply_text(f"Broadcast Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await e.reply_text(f"ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴅᴏɴᴇ ✓ \n\n ꜱᴜᴄᴄᴇꜱꜱ ᴄʜᴀᴛꜱ: {dn} \n ꜰᴀɪʟᴇᴅ ᴄʜᴀᴛꜱ: {err}")
 
 
 @RiZoeL.on_message(filters.user(SUDO_USERS) & filters.command(["fcast", "fmsg", "forward", "forwardmessage"]))
@@ -139,7 +139,7 @@ async def forward_(_, e: Message):
        await e.reply_text("Wrong Usage! \n\n Syntax: /forward (from chat id) (message id) \n\nNote: Must add bot in from message Channel!")
        return
 
-    Han = await e.reply_text("__forwarding__")
+    Han = await e.reply_text("__ғᴏʀᴡᴀʀᴅɪɴɢ__")
     err = 0
     dn = 0
     data = await get_all_users()
@@ -152,10 +152,10 @@ async def forward_(_, e: Message):
           print(a)
           err += 1
     try:
-       await Han.edit_text(f"Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await Han.edit_text(f"ᴅᴏɴᴇ ✓ \n\n ꜱᴜᴄᴄᴇꜱꜱ ᴄʜᴀᴛꜱ: {dn} \n ꜰᴀɪʟᴇᴅ ᴄʜᴀᴛꜱ: {err}")
     except:
        await Han.delete()
-       await e.reply_text(f"Done ✓ \n\n Success chats: {dn} \n Failed chats: {err}")
+       await e.reply_text(f"ᴅᴏɴᴇ ✓ \n\n ꜱᴜᴄᴄᴇꜱꜱ ᴄʜᴀᴛꜱ: {dn} \n ꜰᴀɪʟᴇᴅ ᴄʜᴀᴛꜱ: {err}")
 
 if __name__ == "__main__":
     print("Bot - [INFO]: Starting the bot")
