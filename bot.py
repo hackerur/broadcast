@@ -136,7 +136,7 @@ async def forward_(_, e: Message):
        from_chat = str(Siu[0])
        Msg_id = int(Siu[1])      
     else:
-       await e.reply_text("ᴡʀᴏɴɢ ᴜsᴇᴀɢᴇ! \n\n sʏɴᴛᴀx: /forward (from chat id) (message id) \n\nɴᴏᴛᴇ: ᴍᴜsᴛ ᴀᴅᴅ ʙᴏᴛ ɪɴ ғʀᴏᴍ ᴍᴇssᴇɢᴇ ᴄʜᴀɴɴᴇʟ!")
+       await e.reply_text("ᴡʀᴏɴɢ ᴜsᴇᴀɢᴇ! \n\n sʏɴᴛᴀx: /forward (from chat id) (message id) \n\nɴᴏᴛᴇ: ᴍᴜsᴛ ᴀᴅᴅ ʙᴏᴛ ɪɴ ғʀᴏᴍ ᴍᴇssᴇɢᴇ ᴄʜᴀɴɴᴇʟ! \n\nғᴀᴄɪɴɢ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴄᴏɴᴛᴀᴄᴛ - [ᴘɪʀᴏᴋɪᴅ](t.me/pirokid)")
        return
 
     Han = await e.reply_text("__ғᴏʀᴡᴀʀᴅɪɴɢ__")
